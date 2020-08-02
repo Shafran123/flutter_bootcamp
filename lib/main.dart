@@ -1,67 +1,43 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart';
+
+AudioCache audioPlayer = AudioCache();
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  void playSound(id) {
+    audioPlayer.play("note$id.wav");
+  }
+
+  Expanded buildKey({int id, Color color}) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          playSound(id);
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('images/logo.png'),
-              ),
-              Text(
-                'Shafran Naizer',
-                style: TextStyle(
-                    fontSize: 30.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Lato'),
-              ),
-              Text(
-                'Flutter Developer',
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(
-                height: 5.0,
-                width: 150.0,
-                child: Divider(
-                  color: Colors.white,
-                ),
-              ),
-              Card(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                //padding: EdgeInsets.all(10.0),
-                child: ListTile(
-                  leading: Icon(Icons.phone, color: Colors.teal),
-                  title: Text(
-                    '12u3u33u3u',
-                    style: TextStyle(color: Colors.teal, fontSize: 15.0),
-                  ),
-                ),
-              ),
-              Card(
-                color: Colors.white,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                //padding: EdgeInsets.all(10.0),
-                child: ListTile(
-                  leading: Icon(Icons.email, color: Colors.teal),
-                  title: Text(
-                    'mshafran13@gmail.com ',
-                    style: TextStyle(color: Colors.teal, fontSize: 15.0),
-                  ),
-                ),
-              ),
+              buildKey(id: 1, color: Colors.red),
+              buildKey(id: 2, color: Colors.green),
+              buildKey(id: 3, color: Colors.blue),
+              buildKey(id: 4, color: Colors.yellow),
+              buildKey(id: 5, color: Colors.pink),
+              buildKey(id: 6, color: Colors.orange),
+              buildKey(id: 7, color: Colors.indigo),
             ],
           ),
         ),
